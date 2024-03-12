@@ -12,8 +12,8 @@ def generate_random_string(length):
 # Function to generate random date within a month from today
 def generate_random_date():
     today = datetime.now()
-    end_date = today + timedelta(days=30)
-    random_date = random.choice([today + timedelta(days=i) for i in range((end_date - today).days)])
+    start_date = today - timedelta(days=7)
+    random_date = random.choice([start_date + timedelta(days=i) for i in range((today - start_date).days)])
     return random_date.strftime("%m/%d/%Y")
 
 
@@ -117,7 +117,7 @@ def main():
                 record = record_type()
                 temp_buffer.append(record + "\n")
 
-        temp_buffer.append(f"FILTRL,{len(temp_buffer)},\n")
+        temp_buffer.append(f"FILTRL,{len(temp_buffer) + 1},\n") # Add 1 to include the FILTRL line itself
 
         # Write all buffered lines to the file
         file.writelines(temp_buffer)
