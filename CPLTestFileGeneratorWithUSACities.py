@@ -112,10 +112,7 @@ def main():
                 record = record_type()
                 temp_buffer.append(record + "\n")
 
-        # Remove the trailing newline from FILTRL
-        temp_buffer[-1] = temp_buffer[-1].rstrip()
-
-        temp_buffer.append(f"FILTRL,{len(temp_buffer)},\n")
+        temp_buffer.append(f"FILTRL,{len(temp_buffer) + 1},\n")  # Add 1 to include the FILTRL line itself
 
         # Write all buffered lines to the file
         file.writelines(temp_buffer)
